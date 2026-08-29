@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Long Rally — A Tennis Read</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#fbfbf7;
+    --panel:#ffffff;
+    --grass:#3f6b3a;
+    --grass-deep:#2c4d29;
+    --clay:#c2632f;
+    --sky:#3f7ea6;
+    --ink:#1e2420;
+    --muted:#68706a;
+    --line:rgba(30,36,32,0.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 650px at 10% -6%, rgba(63,107,58,0.08), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 92% 12%, rgba(194,98,47,0.08), transparent 55%),
+      radial-gradient(ellipse 1000px 800px at 50% 55%, rgba(63,126,166,0.05), transparent 60%),
+      radial-gradient(ellipse 1000px 900px at 25% 100%, rgba(63,107,58,0.06), transparent 55%),
+      linear-gradient(180deg, #fcfbf6 0%, #f7f6ef 45%, #fbfaf4 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  .serif{ font-family:'Libre Caslon Text',serif; }
+  ::selection{ background:var(--grass); color:var(--white); }
+
+  .court-line{ position:fixed; top:0; left:36px; height:100%; width:2px; z-index:0; opacity:0.5;
+    background:repeating-linear-gradient(to bottom, var(--grass) 0 3px, transparent 3px 13px); }
+
+  header{ position:sticky; top:0; z-index:50; display:flex; justify-content:space-between; align-items:center;
+    padding:26px 6vw; background:rgba(251,251,247,0.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'Libre Caslon Text',serif; font-size:21px; color:var(--ink); }
+  .brand .dot{ width:9px;height:9px;border-radius:50%; background:var(--clay); }
+  nav a{ color:var(--muted); text-decoration:none; font-size:12px; font-weight:600; text-transform:uppercase;
+    letter-spacing:1.3px; margin-left:32px; }
+  nav a:hover{ color:var(--grass); }
+
+  section{ position:relative; z-index:1; padding:100px 7vw 100px 8vw; }
+
+  .hero{ min-height:88vh; display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; padding-top:60px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px;
+    color:var(--grass); border:1px solid rgba(63,107,58,0.3); padding:6px 16px; border-radius:100px; width:fit-content; margin-bottom:28px; }
+  .eyebrow::before{ content:""; width:6px;height:6px;border-radius:50%; background:var(--clay); }
+  h1.headline{ font-family:'Libre Caslon Text',serif; font-style:italic; font-size:clamp(38px,5.2vw,72px);
+    line-height:1.1; color:var(--ink); }
+  h1.headline .accent{ color:var(--grass); font-style:normal; }
+  .hero p.lede{ max-width:540px; margin-top:26px; font-size:17.5px; line-height:1.8; color:var(--muted); }
+  .hero-note{ margin-top:36px; padding-top:22px; border-top:1px solid var(--line); max-width:520px; color:var(--muted); font-size:14px; line-height:1.85; }
+  .hero-note strong{ color:var(--grass); font-weight:600; }
+
+  .photo-frame{ position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    background:var(--panel); aspect-ratio:1/1.05; box-shadow:0 30px 60px -30px rgba(30,36,32,0.2); }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
+  .photo-frame .tint{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(30,36,32,0.02) 0%, rgba(30,36,32,0.45) 100%); }
+  .photo-frame .cap{ position:absolute; left:18px; bottom:16px; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    color:#fff; letter-spacing:1.5px; text-transform:uppercase; opacity:0.95; text-shadow:0 1px 4px rgba(0,0,0,0.35); }
+
+  .kicker{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--clay); text-transform:uppercase; letter-spacing:2px; margin-bottom:18px; }
+  h2.section-title{ font-family:'Libre Caslon Text',serif; font-size:clamp(28px,3.6vw,46px); max-width:760px; line-height:1.15; color:var(--ink); }
+  .section-desc{ max-width:620px; color:var(--muted); margin-top:20px; font-size:16px; line-height:1.8; }
+
+  .essay-row{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; margin-top:56px; }
+  .essay-row.reverse{ grid-template-columns:1.15fr 0.85fr; }
+  .essay-row.reverse .photo-frame{ order:2; }
+  .essay-row .photo-frame{ aspect-ratio:4/3.2; }
+  .essay-text h3{ font-family:'Libre Caslon Text',serif; font-size:26px; margin-bottom:14px; color:var(--grass); }
+  .essay-text p{ color:var(--muted); font-size:15.5px; line-height:1.85; margin-bottom:14px; }
+  .essay-text p:last-child{ margin-bottom:0; }
+
+  .pull-quote{ max-width:640px; margin:40px 0 0; padding-left:26px; border-left:3px solid var(--clay);
+    font-family:'Libre Caslon Text',serif; font-style:italic; font-size:20px; line-height:1.6; color:var(--ink); }
+
+  .surfaces{ margin-top:56px; display:flex; flex-direction:column; }
+  .surface-row{ display:grid; grid-template-columns:96px 150px 1fr; gap:28px; align-items:center; padding:32px 0; border-top:1px solid var(--line); }
+  .surface-row:last-child{ border-bottom:1px solid var(--line); }
+  .surface-icon{ width:96px; height:96px; border-radius:12px; background:var(--panel); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 14px 28px -20px rgba(30,36,32,0.16); }
+  .surface-icon svg{ width:52px; height:52px; }
+  .surface-label{ font-family:'Libre Caslon Text',serif; font-style:italic; font-size:20px; color:var(--clay); }
+  .surface-body h4{ font-weight:700; font-size:16.5px; margin-bottom:7px; color:var(--ink); }
+  .surface-body p{ color:var(--muted); font-size:14.5px; line-height:1.75; }
+
+  .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:56px; }
+  .gallery-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow:0 20px 40px -30px rgba(30,36,32,0.16); }
+  .gallery-card .photo-frame{ border:none; border-radius:0; aspect-ratio:4/3; }
+  .gallery-card .body{ padding:26px 24px 30px; }
+  .gallery-card h4{ font-family:'Libre Caslon Text',serif; font-size:19px; margin-bottom:10px; color:var(--grass); }
+  .gallery-card p{ color:var(--muted); font-size:14px; line-height:1.75; }
+
+  .quote-band{ text-align:center; padding:130px 8vw; }
+  .quote-band blockquote{ font-family:'Libre Caslon Text',serif; font-style:italic; font-size:clamp(24px,3.4vw,40px);
+    line-height:1.4; max-width:900px; margin:0 auto; color:var(--ink); }
+  .quote-band blockquote .hl{ color:var(--clay); font-style:normal; }
+  .quote-band cite{ display:block; margin-top:24px; color:var(--muted); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; }
+
+  .closing{ text-align:center; border-top:1px solid var(--line); }
+  .closing h2{ font-family:'Libre Caslon Text',serif; font-style:italic; font-size:clamp(30px,4.6vw,52px); color:var(--ink); }
+  .closing p{ color:var(--muted); margin:20px auto 0; max-width:560px; font-size:16px; line-height:1.85; }
+  footer{ border-top:1px solid var(--line); padding:34px 6vw; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:13px; }
+  footer .fbrand{ font-family:'Libre Caslon Text',serif; font-size:17px; color:var(--ink); }
+
+  @media (max-width:900px){
+    .hero{ grid-template-columns:1fr; }
+    .hero .photo-frame{ order:-1; max-width:420px; margin:0 auto; }
+    .essay-row, .essay-row.reverse{ grid-template-columns:1fr; }
+    .essay-row.reverse .photo-frame{ order:0; }
+    .surface-row{ grid-template-columns:1fr; text-align:left; }
+    .gallery{ grid-template-columns:1fr; }
+    .court-line{ display:none; }
+    nav{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="court-line"></div>
+
+<header>
+  <div class="brand"><span class="dot"></span> The Long Rally</div>
+  <nav>
+    <a href="#duel">The Duel</a>
+    <a href="#surfaces">Surfaces</a>
+    <a href="#serve">The Serve</a>
+    <a href="#why">Why We Watch</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">TENNIS — A LONG READ</div>
+    <h1 class="headline">One court.<br><span class="accent">Two players.</span><br>Nowhere to hide.</h1>
+    <p class="lede">No sport strips things down quite like tennis does — no ball to pass off, no teammate to blame, just one player, one racquet, and the slow unraveling of an opponent's confidence over three hours. This is a long, unhurried read about the game underneath the game.</p>
+    <div class="hero-note">
+      Four parts follow — <strong>the duel at the baseline</strong>, <strong>the four great surfaces</strong>, <strong>the serve</strong>, and <strong>why we can't look away</strong>.
+    </div>
+  </div>
+  <div class="photo-frame">
+    <img src="https://images.unsplash.com/photo-1714840961998-8d6c02ace00b?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A tennis player mid-swing on court" loading="lazy">
+    <div class="tint"></div>
+    <div class="cap">Full Extension</div>
+  </div>
+</section>
+
+<section id="duel">
+  <div class="kicker">// 01 THE DUEL</div>
+  <h2 class="section-title">It looks like a game of the body. It's mostly a game of the mind.</h2>
+  <p class="section-desc">Two players stand roughly twenty-three metres apart and spend hours trying to out-think each other — the racquet is almost secondary to what's happening between the ears.</p>
+
+  <div class="essay-row">
+    <div class="photo-frame">
+      <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A player reaching to strike the ball during a match" loading="lazy">
+      <div class="tint"></div>
+      <div class="cap">Reading The Opponent</div>
+    </div>
+    <div class="essay-text">
+      <h3>A pattern, being solved in real time</h3>
+      <p>Every long rally is really a small experiment. A player probes an opponent's backhand, watches how it's returned, and quietly adjusts the next shot based on what that answer revealed. By the fifth or sixth ball, both players are essentially running live analysis on each other, without ever exchanging a word.</p>
+      <p>This is why momentum in tennis can swing so violently within a single game. A player isn't just losing points — they're losing the argument, watching their read on the match slowly stop working, shot by shot.</p>
+      <p>And unlike team sports, there's no one to hand the problem to. A tennis player has to solve their own bad patch, alone, in full view of everyone watching.</p>
+    </div>
+  </div>
+
+  <div class="essay-row reverse">
+    <div class="photo-frame">
+      <img src="https://images.unsplash.com/flagged/photo-1576972405668-2d020a01cbfa?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Four players sharing a light-hearted doubles match" loading="lazy">
+      <div class="tint"></div>
+      <div class="cap">A Different Kind Of Contest</div>
+    </div>
+    <div class="essay-text">
+      <h3>Doubles rewrites the whole equation</h3>
+      <p>Add a partner and the entire logic of the sport shifts. Suddenly there's someone to communicate with mid-point, a net player who can end an exchange in a single volley, and twice as much court to cover with half as much time to think about it.</p>
+      <p>It's a faster, more instinctive version of the same game — reflexes over patience, teamwork over solitary problem-solving. Many lifelong singles players are genuinely humbled the first time they step onto a doubles court seriously.</p>
+    </div>
+  </div>
+</section>
+
+<section id="surfaces">
+  <div class="kicker">// 02 THE FOUR GREAT SURFACES</div>
+  <h2 class="section-title">Change the ground beneath your feet, and you change the entire sport.</h2>
+  <p class="section-desc">Few sports are shaped this dramatically by what's underfoot. The same two players can produce a completely different match depending purely on the surface they're standing on.</p>
+
+  <div class="surfaces">
+    <div class="surface-row">
+      <div class="surface-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="12" width="36" height="36" rx="4" fill="none" stroke="var(--grass)" stroke-width="2.5"/>
+          <path d="M18 20 L42 20 M18 30 L42 30 M18 40 L42 40" stroke="var(--grass)" stroke-width="1.5" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="surface-label">Grass</div>
+      <div class="surface-body">
+        <h4>Fast, low, and unforgiving</h4>
+        <p>The oldest surface in the sport, and now the rarest at the professional level. Grass keeps the ball skidding low and quick, rewarding serve-and-volley instinct over long, patient rallies.</p>
+      </div>
+    </div>
+
+    <div class="surface-row">
+      <div class="surface-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="12" width="36" height="36" rx="4" fill="none" stroke="var(--clay)" stroke-width="2.5"/>
+          <circle cx="30" cy="30" r="8" fill="none" stroke="var(--clay)" stroke-width="1.5" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="surface-label">Clay</div>
+      <div class="surface-body">
+        <h4>Slow, high, and endlessly patient</h4>
+        <p>The ball sits up and slows down on clay, stretching rallies out for far longer than any other surface allows. It's often called the surface that rewards patience above raw power.</p>
+      </div>
+    </div>
+
+    <div class="surface-row">
+      <div class="surface-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="12" width="36" height="36" rx="4" fill="none" stroke="var(--sky)" stroke-width="2.5"/>
+          <path d="M12 30 L48 30" stroke="var(--sky)" stroke-width="1.5" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="surface-label">Hard Court</div>
+      <div class="surface-body">
+        <h4>The great in-between</h4>
+        <p>Consistent bounce, medium pace, and the surface most players grow up learning on. It's the closest thing tennis has to a neutral, balanced test of a complete all-round game.</p>
+      </div>
+    </div>
+
+    <div class="surface-row">
+      <div class="surface-icon">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="12" width="36" height="36" rx="4" fill="none" stroke="var(--ink)" stroke-width="2.5" opacity="0.7"/>
+          <circle cx="30" cy="30" r="4" fill="var(--ink)" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="surface-label">Indoor</div>
+      <div class="surface-body">
+        <h4>No wind, no sun, no excuses</h4>
+        <p>Played under controlled lighting with no weather to blame, indoor tennis tends to favour raw ball-striking — flat, fast shots that would be riskier outdoors suddenly become the safer play.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="serve">
+  <div class="kicker">// 03 THE SERVE</div>
+  <h2 class="section-title">The only shot in sport that starts entirely under your control.</h2>
+
+  <div class="essay-row reverse">
+    <div class="photo-frame">
+      <img src="https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A player holding a tennis racket under a clear sky, preparing to serve" loading="lazy">
+      <div class="tint"></div>
+      <div class="cap">Ball Toss</div>
+    </div>
+    <div class="essay-text">
+      <h3>A ritual, repeated thousands of times</h3>
+      <p>The serve is the one moment in tennis untouched by an opponent's influence — no reaction shot to worry about, just a toss, a swing, and a decision made entirely alone. That's exactly why so many players develop such precise, almost superstitious pre-serve routines: bouncing the ball a fixed number of times, tugging at the same piece of clothing, breathing the same way, point after point.</p>
+      <p>It's also the shot most responsible for a match's entire rhythm. A big first serve doesn't just win the point outright sometimes — it quietly puts doubt in an opponent's mind for every return that follows, even the ones they get back in play.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="kicker">// 04 WHY WE WATCH</div>
+  <h2 class="section-title">Because nothing else in sport feels quite this personal.</h2>
+
+  <div class="gallery">
+    <div class="gallery-card">
+      <div class="photo-frame">
+        <img src="https://images.unsplash.com/photo-1542144582-1ba00456b5e3?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="A tennis racket and ball resting on the court" loading="lazy">
+        <div class="tint"></div>
+      </div>
+      <div class="body">
+        <h4>The Scoreline Nobody Trusts</h4>
+        <p>A player can be two points from defeat and still turn a match around completely — tennis scoring is designed to make comebacks genuinely possible, right up to the very last point.</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="photo-frame">
+        <img src="https://images.unsplash.com/photo-1541744573515-478c959628a0?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="A yellow tennis ball resting on the court" loading="lazy">
+        <div class="tint"></div>
+      </div>
+      <div class="body">
+        <h4>The Silence Between Points</h4>
+        <p>Unlike most sports, the crowd is asked to fall completely silent before every single point — a shared discipline that makes the eventual roar feel earned rather than constant.</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="photo-frame">
+        <img src="https://images.unsplash.com/photo-1545809074-59472b3f5ecc?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="A player holding a tennis ball and racket, smiling after a point" loading="lazy">
+        <div class="tint"></div>
+      </div>
+      <div class="body">
+        <h4>A Face You Can Actually See</h4>
+        <p>No helmet, no teammates crowding the frame — just one exhausted, exposed human expression, visible in full, every single time a point is won or lost.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    Tennis never lets a player disappear into a team. Whatever happens out there, it happened to them, alone, in front of everyone.
+  </div>
+</section>
+
+<section class="quote-band">
+  <blockquote>"Tennis is a <span class="hl">mirror</span>. Whoever you are on the court, that's who you actually are."</blockquote>
+  <cite>— A SENTIMENT COMMON AMONG COACHES</cite>
+</section>
+
+<section class="closing">
+  <h2>Still love-all,<br>somewhere right now.</h2>
+  <p>On a court right now, somewhere, a first serve is about to be tossed into the air. Whatever happens next — an ace, a fault, a rally that runs twenty shots long — it will belong entirely to the person who hit it. That's the whole, quiet appeal of the game.</p>
+</section>
+
+<footer>
+  <div class="fbrand">The Long Rally</div>
+  <div>A slow read on tennis, the mind behind it, and the ground beneath it.</div>
+</footer>
+
+</body>
+</html>
